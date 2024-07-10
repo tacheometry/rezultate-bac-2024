@@ -2,7 +2,7 @@
 
 Programul face scrape la toate paginile din http://bacalaureat.edu.ro/Pages/TaraRezultMedie.aspx și generează JSON din datele preluate.
 
-## [Descărcare](https://github.com/tacheometry/rezultate-bac-2024/releases/download/bac_08_07_2024_0800/bac_2024_full.json)
+## [Descărcare date](https://github.com/tacheometry/rezultate-bac-2024/releases/download/bac_08_07_2024_0800/bac_2024_full.json)
 
 Tipul datelor:
 
