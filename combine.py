@@ -57,14 +57,23 @@ for process in processes:
     process.wait()
 
 print("Combining results...")
+
 full_list = []
-for i in range(0, last_page + 1, BATCH_SIZE):
-    if i == 0:
-        continue
+
+
+def add_file(i):
     print(f"Reading {i}")
+    global full_list
     with open(path.join("data", "batch", f"bac_2024_batch_{i}.json"), "r") as f:
         for value in json.load(f).values():
             full_list += value
+
+
+add_file(1)
+for i in range(0, last_page + 1, BATCH_SIZE):
+    if i == 0:
+        continue
+    add_file(i)
 
 with open(path.join("data", "bac_2024_full.json"), "w") as f:
     json.dump(full_list, f)
