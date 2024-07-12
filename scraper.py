@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib3
 import json
-from os import path
+from os import path, remove
 from time import sleep
 import sys
 
@@ -90,7 +90,7 @@ def parse_page(idx, html):
             soup.find(id="ContentPlaceHolderBody_FinalDiv").find("table").find_all("tr")
         )
     except AttributeError:
-        print(f"Couldn't get the table for {idx}")
+        print(f"[{start_idx}] [{idx}] Couldn't parse")
         return None
     parse_page_metadata(idx, soup)
 
@@ -157,7 +157,7 @@ def try_save_page(i, retries=0):
     idx = f"{i}"
 
     if idx in students_by_page:
-        print(f"Skipping {idx}")
+        print(f"[{start_idx}] [{idx}] Skipping")
         return
 
     metadata = {}
@@ -176,7 +176,7 @@ def try_save_page(i, retries=0):
 
         if retries < 3:
             sleep(0.5)
-            print(f"Retrying {i}")
+            print(f"[{start_idx}] [{i}] Retrying")
             return try_save_page(i, retries)
         else:
             print(f"Got stuck at {i} after {retries} retries. Cancelling!")
@@ -187,17 +187,17 @@ def try_save_page(i, retries=0):
             exit(-1)
 
     students_by_page[idx] = students
-    print(f"New students for {idx}")
+    # print(f"New students for {idx}")
 
 
-print("Loading data")
+# print("Loading data")
 load_cache()
 
 
 if len(sys.argv) != 4:
     print("Need an argument for batch size and another argument for page number")
 
-print(sys.argv)
+# print(sys.argv)
 
 batch_size = int(sys.argv[1])
 start_idx = int(sys.argv[2])
@@ -211,10 +211,10 @@ for i in range(start_idx, start_idx + batch_size):
     if last_page > 0 and i > last_page:
         break
     try_save_page(i)
-    sleep(0.3)
+    sleep(0.5)
 
 
-print("Saving...")
+print(f"[{start_idx}] Saving batch...")
 if start_idx == 1:
     with open(first_page_metadata_path, "w") as f:
         json.dump(page_metadata["1"], f)
@@ -224,3 +224,7 @@ for i in range(start_idx, start_idx + batch_size):
     batch_data[idx] = students_by_page[idx]
     with open(path.join("data", "batch", f"bac_2024_batch_{start_idx}.json"), "w") as f:
         json.dump(batch_data, f)
+    fail_path = path.join("data", "batch", f"bac_2024_batch_{start_idx}.failed")
+    if path.exists(fail_path):
+        print(f"Cleaning {fail_path}")
+        remove(fail_path)
