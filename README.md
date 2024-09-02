@@ -3,6 +3,7 @@
 ## Vizualizare
 
 Sesiunea iunie-iulie: https://tacheometry.github.io/rezultate-bac-2024/rezultate_bac_2024_iunie_iulie.html
+
 Sesiunea august: https://tacheometry.github.io/rezultate-bac-2024/rezultate_bac_2024_august.html
 
 ## Date
