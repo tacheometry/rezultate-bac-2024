@@ -2,13 +2,15 @@
 
 ## Vizualizare
 
-https://tacheometry.github.io/rezultate-bac-2024/rezultate_bac_2024_iunie_iulie.html
+Sesiunea iunie-iulie: https://tacheometry.github.io/rezultate-bac-2024/rezultate_bac_2024_iunie_iulie.html
+Sesiunea august: https://tacheometry.github.io/rezultate-bac-2024/rezultate_bac_2024_august.html
 
 ## Date
 
 Programul face scrape la toate paginile din http://bacalaureat.edu.ro/Pages/TaraRezultMedie.aspx și generează JSON din datele preluate.
 
-### [Descărcare date](https://github.com/tacheometry/rezultate-bac-2024/releases/download/bac_12_07_2024_0800/bac_2024_full.json)
+### [Descărcare date sesiune 1](https://github.com/tacheometry/rezultate-bac-2024/releases/download/bac_02_09_2024_1646/bac_2024_full_sesiune_1.json)
+### [Descărcare date sesiune 2](https://github.com/tacheometry/rezultate-bac-2024/releases/download/bac_02_09_2024_1646/bac_2024_full_sesiune_2.json)
 
 Tipul datelor:
 
